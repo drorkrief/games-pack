@@ -1,0 +1,2 @@
+body,html{margin:0;padding:0}.App{text-align:center}.wrapper{height:304px;margin:auto;width:304px}.continer{align-content:center;background:#000;flex-flow:row wrap;gap:2px}.continer,.continer>div{align-items:center;display:flex;justify-content:center}.continer>div{background:#fff;font-size:xx-large;height:100px;width:100px}.content:nth-child(3n){-webkit-column-break-after:always;break-after:always;page-break-after:always}
+/*# sourceMappingURL=main.38ab0fec.css.map*/
