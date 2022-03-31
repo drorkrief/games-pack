@@ -15,26 +15,20 @@ export const TicTacToe = () => {
     setGameStatus(Array(9).fill(""));
     setWinner(null);
     setPlayer("x");
-    // console.log(234);
   };
   const makeAMove = (board) => {
     if (player === "x") {
-      // var tempstatus = [...gameStatus];
       var random = Math.floor(Math.random() * 9);
       for (let i = 0; i < gameStatus.length; i++) {
         if (board[random] === "") {
           board[random] = "o";
-          // setGameStatus(tempstatus);
           return board;
         } else{
           random = Math.floor(Math.random() * 9);
-          // console.log(random,"random");
         }
-      //   console.log("d");
       }
-      // console.log(board);
     }
-    return 2;
+    return board;
   };
   const clickHandle = (cellNum) => {
     if (gameStatus[cellNum] !== "" || winner) {
@@ -47,12 +41,13 @@ export const TicTacToe = () => {
       setPlayer("x");
     }
     board[cellNum] = player;
-    if (playerType === "single") {
-      setGameStatus(makeAMove(board))
-      // makeAMove(board);
-    }
     setGameStatus(board);
     checkWinner(board);
+    if (playerType === "single") {
+      setGameStatus(makeAMove(board))
+      // setGameStatus(board);
+    checkWinner(board);
+    }
   };
   const resetGame = () => {
     setGameStatus(Array(9).fill(""));
@@ -125,7 +120,7 @@ export const TicTacToe = () => {
       </div>
       {winner && (
         <>
-          <p>teh winner is {winner}</p>
+          <p>the winner is {winner}</p>
           <button onClick={() => resetGame()}>reset the game</button>
         </>
       )}
