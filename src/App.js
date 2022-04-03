@@ -1,4 +1,5 @@
 import "./App.css";
+import { MemoryGame } from "./Memory Game/MemoryGame";
 import { TicTacToe } from "./TicTacToe/TicTacToe";
 function App() {
   
@@ -6,6 +7,8 @@ function App() {
     <div className="App">
     <h1>Tic Tac Toe</h1>
     <TicTacToe/>
+    <hr/>
+    <MemoryGame/>
     </div>
   );
 }
