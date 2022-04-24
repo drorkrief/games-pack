@@ -12,6 +12,7 @@
   max-height: 80%;
 }
 /* This container is needed to position the front and back side */
+
 .flip-card-inner {
   position: relative;
   width: 100%;
@@ -68,4 +69,10 @@
   margin: 0 20px;
   /* background-color: lightblue; */
   }
+}
+.noFit{
+  background: lightcoral;
+}
+.fit{
+  background: lightgreen;
 }
