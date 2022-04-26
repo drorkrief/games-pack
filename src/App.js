@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, HashRouter } from "react-router-dom";
 import { MemoryCardsGame } from "./Memory Game/MemoryCardsGame";
 // import { MemoryGame } from "./Memory Game/MemoryGame";
 import { TicTacToe } from "./TicTacToe/TicTacToe";
@@ -7,6 +7,7 @@ import { NoMatch } from "./Memory Game/NoMatch";
 import { Home } from "./Memory Game/Home";
 function App() {
   return (
+    <HashRouter basename="/">
     <div className="App">
       <main
         style={{
@@ -34,7 +35,7 @@ function App() {
       {/* <hr/> */}
       {/* <MemoryGame/> */}
       {/* <MemoryCardsGame/> */}
-    </div>
+    </div></HashRouter>
   );
 }
 
