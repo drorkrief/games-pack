@@ -3,6 +3,7 @@ import { Card } from "./Card";
 import "./MemoryCardsGame.css";
 export const MemoryCardsGame = () => {
   const [clicked, setlicked] = useState(0);
+  // const [win, setwin] = useState(false);
   // const [check, setCheck] = useState();
 
   let cardsList = [
@@ -49,46 +50,65 @@ export const MemoryCardsGame = () => {
     // console.log(array);
     return array;
   }
-  const resetCardStatus = useCallback((cardId) => {
+  const resetTheGame = () => {
+      // setwin(false)
+      setlicked(0);
+    setCardList(shuffle(cardsList));
+  };
+  const isFinish = () => {
     let newArray = [...cardListS];
-    let temp = newArray.findIndex(x => x.id === cardId)
-    console.log(temp);
-    newArray[temp].statusCard = "";
-    setCardList(newArray);
-    setlicked(clicked + 1);
+    let isCheck = newArray.find((x) => x.statusCard === "");
 
-  },[cardListS])
+    if (!isCheck) {
+      console.log("good");
+      // setwin(true)
+      alert(`Winner!\nYou failed only ${clicked} times`)
+      resetTheGame()
+    } 
+  };
+  const resetCardStatus = useCallback(
+    (cardId) => {
+      let newArray = [...cardListS];
+      let temp = newArray.findIndex((x) => x.id === cardId);
+      // console.log(temp);
+      newArray[temp].statusCard = "";
+      setCardList(newArray);
+      setlicked(clicked + 1);
+    },
+    [cardListS]
+  );
   const clickHandle = (cardId) => {
+
     let newArray = [...cardListS];
     let isCheck = newArray.find((x) => x.statusCard === "check");
     var arrIndex = newArray.findIndex((x) => x.id === cardId);
     // console.log(isCheck);
     if (cardListS[arrIndex].statusCard) {
-      console.log("is clicked");
-      return
+      // console.log("is clicked");
+      return;
     }
-    if (isCheck) { // there is check before;
-      console.log(isCheck.id ,"is in check mode");
+    if (isCheck) {
+      // there is check before;
+      // console.log(isCheck.id ,"is in check mode");
       let tempIndex = newArray.findIndex((x) => x.statusCard === "check");
       if (isCheck.name === newArray[arrIndex].name) {
-        console.log("ok");
+        // console.log("ok");
         newArray[tempIndex].statusCard = "fit";
         newArray[arrIndex].statusCard = "fit";
         // newArray[isCheck.id].statusCard = "fit";
         setCardList(newArray);
-      }else{
-        console.log("no");
+        isFinish();
+      } else {
+        // console.log("no");
         newArray[tempIndex].statusCard = "noFit";
         newArray[arrIndex].statusCard = "noFit";
         setCardList(newArray);
-
       }
-    } else{
-      console.log("no one is in check mode");
-      
+    } else {
+      // console.log("no one is in check mode");
+
       newArray[arrIndex].statusCard = "check";
       setCardList(newArray);
-
     }
     //   newArray[arrIndex].statusCard = "check";
     //   setCardList(newArray);
@@ -109,15 +129,21 @@ export const MemoryCardsGame = () => {
   return (
     <>
       <h1>MemoryCardsGame</h1>
+      <button onClick={resetTheGame}>Reset</button>
       <h3>you're failed {clicked} times</h3>
       <div className="cardsWrapper">
         {cardListS.map((card, index) => (
           <div key={`cardNum${index}`}>
             {/* {card} */}
-            <Card cardprops={card} clickHandle={clickHandle} resetCardStatus={resetCardStatus} />
+            <Card
+              cardprops={card}
+              clickHandle={clickHandle}
+              resetCardStatus={resetCardStatus}
+            />
           </div>
         ))}
       </div>
+     
     </>
   );
 };
