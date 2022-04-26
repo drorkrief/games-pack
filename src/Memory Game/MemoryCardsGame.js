@@ -2,7 +2,6 @@ import React, { useCallback, useState } from "react";
 import { Card } from "./Card";
 import { Link } from "react-router-dom";
 
-
 import "./MemoryCardsGame.css";
 export const MemoryCardsGame = () => {
   const [clicked, setlicked] = useState(0);
@@ -36,15 +35,15 @@ export const MemoryCardsGame = () => {
   function shuffle(originalArray) {
     var array = [].concat(originalArray);
     var currentIndex = array.length,
-    temporaryValue,
-    randomIndex;
-    
+      temporaryValue,
+      randomIndex;
+
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
       // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
-      
+
       // And swap it with the current element.
       temporaryValue = array[currentIndex];
       array[currentIndex] = array[randomIndex];
@@ -61,7 +60,7 @@ export const MemoryCardsGame = () => {
   const isFinish = () => {
     let newArray = [...cardListS];
     let isCheck = newArray.find((x) => x.statusCard === "");
-    
+
     if (!isCheck) {
       console.log("good");
       // setwin(true)
@@ -79,57 +78,57 @@ export const MemoryCardsGame = () => {
       setlicked(clicked + 1);
     },
     [cardListS]
-    );
-    const clickHandle = (cardId) => {
-      let newArray = [...cardListS];
-      let isCheck = newArray.find((x) => x.statusCard === "check");
-      var arrIndex = newArray.findIndex((x) => x.id === cardId);
-      // console.log(isCheck);
-      if (cardListS[arrIndex].statusCard) {
-        // console.log("is clicked");
-        return;
-      }
-      if (isCheck) {
-        // there is check before;
-        // console.log(isCheck.id ,"is in check mode");
-        let tempIndex = newArray.findIndex((x) => x.statusCard === "check");
-        if (isCheck.name === newArray[arrIndex].name) {
-          // console.log("ok");
-          newArray[tempIndex].statusCard = "fit";
-          newArray[arrIndex].statusCard = "fit";
-          // newArray[isCheck.id].statusCard = "fit";
-          setCardList(newArray);
-          isFinish();
-        } else {
-          // console.log("no");
-          newArray[tempIndex].statusCard = "noFit";
-          newArray[arrIndex].statusCard = "noFit";
-          setCardList(newArray);
-        }
+  );
+  const clickHandle = (cardId) => {
+    let newArray = [...cardListS];
+    let isCheck = newArray.find((x) => x.statusCard === "check");
+    var arrIndex = newArray.findIndex((x) => x.id === cardId);
+    // console.log(isCheck);
+    if (cardListS[arrIndex].statusCard) {
+      // console.log("is clicked");
+      return;
+    }
+    if (isCheck) {
+      // there is check before;
+      // console.log(isCheck.id ,"is in check mode");
+      let tempIndex = newArray.findIndex((x) => x.statusCard === "check");
+      if (isCheck.name === newArray[arrIndex].name) {
+        // console.log("ok");
+        newArray[tempIndex].statusCard = "fit";
+        newArray[arrIndex].statusCard = "fit";
+        // newArray[isCheck.id].statusCard = "fit";
+        setCardList(newArray);
+        isFinish();
       } else {
-        // console.log("no one is in check mode");
-        
-        newArray[arrIndex].statusCard = "check";
+        // console.log("no");
+        newArray[tempIndex].statusCard = "noFit";
+        newArray[arrIndex].statusCard = "noFit";
         setCardList(newArray);
       }
-      //   newArray[arrIndex].statusCard = "check";
-      //   setCardList(newArray);
-      // }else {// there is check card
-      //   console.log(isCheck.name , newArray[arrIndex].name);
-      //   if(isCheck.name === newArray[arrIndex].name){ // we have match!
-      //     let tempIndex = newArray.findIndex((x) => x.statusCard === "check");
-      //     newArray[tempIndex].statusCard = "fit";
-      //     newArray[arrIndex].statusCard = "fit";
-      //     setCardList(newArray);
-      //   } else{//wrong fit
-      //     let tempIndex = newArray.findIndex((x) => x.statusCard === "check");
-      //     newArray[tempIndex].statusCard = "notFit";
-      //     newArray[arrIndex].statusCard = "notFit";
-      //   }
-      // }
-    };
-    return (
-      <>
+    } else {
+      // console.log("no one is in check mode");
+
+      newArray[arrIndex].statusCard = "check";
+      setCardList(newArray);
+    }
+    //   newArray[arrIndex].statusCard = "check";
+    //   setCardList(newArray);
+    // }else {// there is check card
+    //   console.log(isCheck.name , newArray[arrIndex].name);
+    //   if(isCheck.name === newArray[arrIndex].name){ // we have match!
+    //     let tempIndex = newArray.findIndex((x) => x.statusCard === "check");
+    //     newArray[tempIndex].statusCard = "fit";
+    //     newArray[arrIndex].statusCard = "fit";
+    //     setCardList(newArray);
+    //   } else{//wrong fit
+    //     let tempIndex = newArray.findIndex((x) => x.statusCard === "check");
+    //     newArray[tempIndex].statusCard = "notFit";
+    //     newArray[arrIndex].statusCard = "notFit";
+    //   }
+    // }
+  };
+  return (
+    <>
       <h1>MemoryCardsGame</h1>
       <button onClick={resetTheGame}>Reset</button>
       <h3>you're failed {clicked} times</h3>
@@ -145,7 +144,7 @@ export const MemoryCardsGame = () => {
           </div>
         ))}
       </div>
-<Link to="/">Go to the home page</Link>;
+      <Link to="/">Go to the home page</Link>;
     </>
   );
 };

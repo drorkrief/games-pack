@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./TicTacToe.css";
 import { Link } from "react-router-dom";
 
-
 export const TicTacToe = () => {
   const [player, setPlayer] = useState("x");
   const [winner, setWinner] = useState();
@@ -80,25 +79,25 @@ export const TicTacToe = () => {
           board[element[0]] === "" ||
           board[element[1]] === "" ||
           board[element[2]] === ""
-          ) {
-            //there is no winner
-          } else if (
-            board[element[0]] === board[element[1]] &&
-            board[element[1]] === board[element[2]]
-            ) {
-              setWinner(board[element[0]]);
-            }
-          });
+        ) {
+          //there is no winner
+        } else if (
+          board[element[0]] === board[element[1]] &&
+          board[element[1]] === board[element[2]]
+        ) {
+          setWinner(board[element[0]]);
         }
-      };
-      const Cell = ({ cellNum }) => {
-        return (
-          <div
-          onClick={() => {
-            clickHandle(cellNum);
-          }}
-          className="content"
-          >
+      });
+    }
+  };
+  const Cell = ({ cellNum }) => {
+    return (
+      <div
+        onClick={() => {
+          clickHandle(cellNum);
+        }}
+        className="content"
+      >
         {gameStatus[cellNum]}
       </div>
     );
@@ -127,7 +126,7 @@ export const TicTacToe = () => {
           <button onClick={() => resetGame()}>reset the game</button>
         </>
       )}
-<Link to="/">Go to the home page</Link>;
+      <Link to="/">Go to the home page</Link>;
     </>
   );
 };

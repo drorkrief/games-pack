@@ -20,7 +20,6 @@ function App() {
       >
         <Link to="/">Home</Link>
         <Link to="/tictactoe">TicTacToe</Link>
-       
 
         <Link to="/memorycardsgame">MemoryCardsGame</Link>
       </main>

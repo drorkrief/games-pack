@@ -42,15 +42,15 @@
   background-color: #bbb;
   color: black;
 }
-.flip{
-    background: yellowgreen;
+.flip {
+  background: yellowgreen;
 }
 /* Style the back side */
 .flip-card-back {
   background-color: #bbb;
   color: white;
   transform: rotateY(180deg);
-  
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,9 +70,9 @@
   background-color: lightblue;
   }
 } */
-.noFit{
+.noFit {
   background: lightcoral;
 }
-.fit{
+.fit {
   background: lightgreen;
 }

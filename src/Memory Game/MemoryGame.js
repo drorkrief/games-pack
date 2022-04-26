@@ -30,19 +30,18 @@ export const MemoryGame = () => {
   );
   const clickHandle = (parameter) => {
     let temp = [...cards]; // copy of cards state
-    if (parameter === null){
+    if (parameter === null) {
       setTimeout(() => {
-        
         console.log("null");
-        var resetNoMatch = temp.forEach(x=>{
+        var resetNoMatch = temp.forEach((x) => {
           if (x.current === "noMatch") {
             x.current = "";
           }
           console.log(resetNoMatch);
-        })
-        return 
+        });
+        return;
       }, 100);
-      }
+    }
     let currentIndex = temp.findIndex((obj) => obj.id === parameter); // find the index of current item by id
     if (temp[currentIndex].current !== "") {
       // if current card is check or fit => do nothing!
