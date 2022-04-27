@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { Card } from "./Card";
 import { Link } from "react-router-dom";
-
+import {Helmet} from "react-helmet";
 import "./MemoryCardsGame.css";
 export const MemoryCardsGame = () => {
   const [clicked, setlicked] = useState(0);
@@ -129,7 +129,11 @@ export const MemoryCardsGame = () => {
   };
   return (
     <>
-      <h1>MemoryCardsGame</h1>
+    <Helmet>
+      <title>Memory Cards Game</title>
+      <meta name="description" content="Memory Cards Game for fun"/>
+    </Helmet>
+      <h1>Memory Cards Game</h1>
       <button onClick={resetTheGame}>Reset</button>
       <h3>you're failed {clicked} times</h3>
       <div className="cardsWrapper">
