@@ -8,7 +8,7 @@ import { Home } from "./Memory Game/Home";
 
 function App() {
   return (
-    // <HashRouter basename="/">
+    <HashRouter basename="/">
     <div className="App">
       <main
         style={{
@@ -36,7 +36,7 @@ function App() {
       {/* <hr/> */}
       {/* <MemoryGame/> */}
       {/* <MemoryCardsGame/> */}
-    </div>//</HashRouter>
+    </div></HashRouter>
   );
 }
 
