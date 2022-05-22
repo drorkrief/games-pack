@@ -6,7 +6,7 @@ import { TicTacToe } from "./TicTacToe/TicTacToe";
 import { NoMatch } from "./Memory Game/NoMatch";
 import { Home } from "./Memory Game/Home";
 import { useEffect, useState } from "react";
-import Helmet from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 function App() {
   const [dataYnet, setdataYnet] = useState(false);
   useEffect(() => {
@@ -17,8 +17,8 @@ function App() {
         }
         throw response;
       })
-      .then(data =>{
-        setdataYnet(data.data[1])
+      .then((data) => {
+        setdataYnet(data.data[1]);
       })
       .catch((err) => {
         setdataYnet(err);
@@ -30,42 +30,54 @@ function App() {
   console.log(dataYnet);
   return (
     <HashRouter basename="/">
+      <HelmetProvider>
+        <div className="App">
+          <Helmet>
+            <title>adf</title>
+            {dataYnet && <title>{dataYnet.title}</title>}
+            {dataYnet && <meta property="og:title" content={dataYnet.title} />}
+            {dataYnet && (
+              <meta property="og:description" content={dataYnet.textToShow} />
+            )}
+            {dataYnet && (
+              <meta
+                property="og:image"
+                content={dataYnet.promotionImageDetails.url}
+              />
+            )}
+          </Helmet>
+          <main
+            style={{
+              display: "flex",
+              gap: "2vw",
+              justifyContent: "start",
+              background: "silver",
+              lineHeight: "30px",
+              paddingLeft: "20px",
+            }}
+          >
+            <Link to="/">Home</Link>
+            <Link to="/tictactoe">TicTacToe</Link>
 
-      <div className="App">
-      <Helmet><title>adf</title>
-        {dataYnet&&
-    <title>{dataYnet.title}</title>}
-    {dataYnet&&<meta property="og:title" content={dataYnet.title} />}
-    {dataYnet&&<meta property="og:description" content={dataYnet.textToShow} />}
-    {dataYnet&&<meta property="og:image" content={dataYnet.promotionImageDetails.url} />}
- </Helmet>
-        <main
-          style={{
-            display: "flex",
-            gap: "2vw",
-            justifyContent: "start",
-            background: "silver",
-            lineHeight: "30px",
-            paddingLeft: "20px",
-          }}
-        >
-          <Link to="/">Home</Link>
-          <Link to="/tictactoe">TicTacToe</Link>
-
-          <Link to="/memorycardsgame">MemoryCardsGame</Link>
-        </main>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/tictactoe" element={<TicTacToe />} />
-          <Route exact path="/memorycardsgame" element={<MemoryCardsGame />} />
-          <Route path="*" element={<NoMatch />} />
-        </Routes>
-        {/* <h1>Tic Tac Toe</h1>
+            <Link to="/memorycardsgame">MemoryCardsGame</Link>
+          </main>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/tictactoe" element={<TicTacToe />} />
+            <Route
+              exact
+              path="/memorycardsgame"
+              element={<MemoryCardsGame />}
+            />
+            <Route path="*" element={<NoMatch />} />
+          </Routes>
+          {/* <h1>Tic Tac Toe</h1>
     <TicTacToe/> */}
-        {/* <hr/> */}
-        {/* <MemoryGame/> */}
-        {/* <MemoryCardsGame/> */}
-      </div>
+          {/* <hr/> */}
+          {/* <MemoryGame/> */}
+          {/* <MemoryCardsGame/> */}
+        </div>
+      </HelmetProvider>
     </HashRouter>
   );
 }
